@@ -1,0 +1,12 @@
+# Schema Audit Notes (`db/schema.sql`)
+
+Audited with DataGuardian Architecture Agent across `suppliers`, `invoices`, `invoice_lines`, and `needs_review`.
+
+## Main Changes Made
+- **Foreign keys / relationships (`RULE-02`):** Verified or added foreign key links where valid parent-child relationships exist (such as `invoices` -> `suppliers` and `invoice_lines` -> `invoices`) so valid records stay connected.
+- *(Add any specific column, constraint, or index edit you made in `db/schema.sql` here.)*
+
+## Kept As-Is (Intentional Design Choices)
+- **`needs_review` without strict foreign keys (`RULE-02`):** Quarantined invoices may have incomplete, messy, or unverified fields, so keeping `needs_review` flexible prevents valid error/quarantine logging from failing.
+- **No `created_at` / `updated_at` columns (`RULE-06`, `RULE-07`):** Kept the schema lean for the current extraction-and-validation pipeline without adding extra audit timestamp columns yet.
+- **Transactional focus over BI/reporting structure (`RULE-10`):** The database is structured to support extraction, deterministic validation, and human review rather than analytical reporting queries.
