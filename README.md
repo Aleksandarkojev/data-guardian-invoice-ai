@@ -29,3 +29,7 @@ _Paste the table from `eval/results.md` here after you run the evaluation with a
 - Swedish VAT rates and Swedish org numbers
 - A single separator with exactly three digits after it (`1,234`) is read as thousands
 - Dates like `05/11/2026` are read day first
+
+## ER Diagram
+
+![Invoice AI ER Diagram](db/er-diagram.png)
