@@ -92,3 +92,7 @@ def test_duplicate_in_batch_is_not_retryable():
     _, issues = build_invoice(good_raw(), today=TODAY, seen=seen)
     assert codes(issues) == {"duplicate_invoice"}
     assert issues[0].retryable is False
+
+def test_due_date_on_invoice_date_is_allowed():
+    _, issues = build_invoice(good_raw(due_date="2026-10-01"), today=TODAY)
+    assert "due_before_invoice" not in codes(issues)
